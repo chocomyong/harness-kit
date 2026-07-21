@@ -22,3 +22,5 @@ To share the hook with every clone, commit it to a tracked directory instead and
 Merge the `hooks` block from `claude-settings.json` into your repo's `.claude/settings.json`, and copy `check_destructive.sh` to `.claude/hooks/` (path referenced in the snippet). Claude Code then consults the script before every Bash call; exit code 2 blocks the call with the message shown to the agent.
 
 Other engines have equivalent seams (Codex and Cursor both support project-level command policies); the git hook above covers every engine at once, which is why it comes first.
+
+**Honest ceiling:** command-string matching is defense-in-depth, not a hard gate - aliases, `eval`, or creative spacing can slip past it. The git pre-commit is the reliable, engine-wide net; treat the PreToolUse matcher as a best-effort backstop, never a guarantee.
