@@ -1,0 +1,25 @@
+#!/bin/sh
+# harness-kit example: block commits that stage the section-0 invariant file.
+#
+# Install:  cp examples/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# Then edit PROTECTED to the file(s) your AGENTS.md section 0 names.
+#
+# Sanctioned override (the deliberate recovery path only):
+#   INVARIANT_COMMIT_OK=1 git commit ...
+set -eu
+
+PROTECTED="data/production.db"
+
+for f in $PROTECTED; do
+  if git diff --cached --name-only | grep -qx "$f"; then
+    if [ "${INVARIANT_COMMIT_OK:-0}" = "1" ]; then
+      echo "[harness] $f is staged - allowed by INVARIANT_COMMIT_OK=1" >&2
+    else
+      echo "[harness] BLOCKED: $f is staged, and it is the section-0 invariant file." >&2
+      echo "[harness] A stale copy reaching the remote is the disaster AGENTS.md section 0 describes." >&2
+      echo "[harness] If this commit IS the sanctioned recovery path, rerun as:" >&2
+      echo "[harness]   INVARIANT_COMMIT_OK=1 git commit ..." >&2
+      exit 1
+    fi
+  fi
+done

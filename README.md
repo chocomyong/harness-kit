@@ -68,6 +68,7 @@ The whole kit is about **650 lines of Markdown** - you can read every word of it
 | [`install.sh`](install.sh) | The **one-command installer**: copies the files above into your repo, skips anything that already exists, detects Claude Code, prints the bootstrap prompt. |
 | [`examples/AGENTS.example.md`](examples/AGENTS.example.md) | The canon **filled in end-to-end** for a fictional project - what the template looks like when it is done, and roughly what the bootstrap prompt should produce for yours. |
 | [`examples/walkthrough.md`](examples/walkthrough.md) | **Adoption end to end in five minutes** - a real walkthrough of install -> agent fill -> what changes, with the actual outputs. |
+| [`examples/hooks/`](examples/hooks/) | **Enforcement, not just prose**: a git pre-commit that blocks the section-0 invariant file from being staged, and a Claude Code hook that stops destructive git. Optional, engine-labeled. |
 | [`PROMPTS.md`](PROMPTS.md) | **Paste-ready prompts for the whole lifecycle**: bootstrap, session start, recording a pattern card, challenging an absence claim, pre-commit review, canon upkeep. |
 
 Plus one essay, because it is the sharpest idea here and worth reading before you touch anything else:
