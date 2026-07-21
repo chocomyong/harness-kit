@@ -30,7 +30,7 @@ Set up harness-kit in this repo:
 - **The agent works under discipline**: evidence before claims, root cause before fix, a human sign-off before anything destructive, and a self-check before it is allowed to say "done."
 - **Bugs stop coming back.** Each one that teaches you something becomes a numbered card in `PATTERNS.md` that future sessions must read before touching that area - which is what stops an agent from "cleaning up" a fix it does not understand.
 
-Want to see it before you run it? [`examples/walkthrough.md`](examples/walkthrough.md) is the whole journey with real outputs. And for everything after day one - starting a session, recording a pattern card, challenging an "X does not exist" claim, reviewing before commit - [`PROMPTS.md`](PROMPTS.md) has a paste-ready prompt for each.
+Want to see it before you run it? [`examples/walkthrough.md`](examples/walkthrough.md) is the whole journey with real outputs. For everything after day one - starting a session, recording a pattern card, challenging an "X does not exist" claim, reviewing before commit - [`PROMPTS.md`](PROMPTS.md) has a paste-ready prompt for each. And if even the quickstart is more ceremony than you want: [`MINIMAL.md`](MINIMAL.md) is the whole discipline in 64 lines, zero blanks - save it as `AGENTS.md` and you are done.
 
 Prefer to run the command yourself? It is step 1 of the block above; then paste step 2 into your agent. And if piping curl into a shell makes you itch - it should - [`install.sh`](install.sh) is 50 lines of plain POSIX sh that only ever adds files; read it first. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in. The agent assembling its own harness from measured facts is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
 
@@ -58,6 +58,7 @@ The whole kit is about **650 lines of Markdown** - you can read every word of it
 
 | File | What it gives you |
 |---|---|
+| [`MINIMAL.md`](MINIMAL.md) | **The 64-line harness.** The whole discipline distilled into one file with zero blanks - save it as `AGENTS.md` and it works exactly as pasted. Start here if you want value in the next thirty seconds. |
 | [`templates/AGENTS.md`](templates/AGENTS.md) | An **engine-neutral canon**: one source-of-truth rules file every agent reads, so Claude Code, Codex, and the next tool you adopt stay in sync instead of drifting. |
 | [`templates/CLAUDE.md`](templates/CLAUDE.md) | A **thin engine appendix** that imports the canon and holds only the Claude-Code-specific machinery (skills, subagents, hooks). The pattern that keeps rules DRY across engines. |
 | [`templates/WORK_PROTOCOL.md`](templates/WORK_PROTOCOL.md) | The **thinking discipline**: evidence-first, root-cause-before-fix, a two-strike rule for when you are stuck, and a four-question self-check before you dare say "done." |
