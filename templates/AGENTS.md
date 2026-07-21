@@ -90,7 +90,7 @@ Every substantial task runs this loop:
 
 Location of the registry: `./PATTERNS.md` (seeded there by install.sh - change this line if you keep it elsewhere).
 
-Each entry is a 4-block card: **symptom / debug path / root cause / prevention rule**, plus the version or date it was learned. Before planning any change, scan the registry for cards that touch your area and name the relevant ones in your plan.
+Each entry is a 4-block card: **symptom / debug path / root cause / prevention rule**, plus the version or date it was learned. Before planning any change, check the registry's **index** for cards that touch your area, open those cards, and name them in your plan. (The index-first read is what keeps this scaling as cards accumulate.)
 
 ---
 
