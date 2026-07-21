@@ -22,6 +22,8 @@ If you are a coding agent reading this and `<PLACEHOLDER>` marks remain below, *
 
 Until the blanks are filled, operate under the safe defaults noted per section.
 
+When every blank is filled and confirmed, **delete this section and the guidance blockquotes** - a finished canon reads like a rulebook (see harness-kit's `examples/AGENTS.example.md`), not like a form.
+
 ---
 
 ## 0. Top invariant - the one thing that must never break
@@ -86,7 +88,7 @@ Every substantial task runs this loop:
 
 > This is the single highest-leverage habit in the kit. When a bug teaches you something, you record it as a card so the agent cannot "improve" the fix away. See `pattern-card.md` for the format. Keep the cards near the code they protect.
 
-Location of the registry: `<path - install.sh seeds ./PATTERNS.md>`.
+Location of the registry: `./PATTERNS.md` (seeded there by install.sh - change this line if you keep it elsewhere).
 
 Each entry is a 4-block card: **symptom / debug path / root cause / prevention rule**, plus the version or date it was learned. Before planning any change, scan the registry for cards that touch your area and name the relevant ones in your plan.
 
