@@ -30,11 +30,18 @@ Set up harness-kit in this repo:
 - **The agent works under discipline**: evidence before claims, root cause before fix, a human sign-off before anything destructive, and a self-check before it is allowed to say "done."
 - **Bugs stop coming back.** Each one that teaches you something becomes a numbered card in `PATTERNS.md` that future sessions must read before touching that area - which is what stops an agent from "cleaning up" a fix it does not understand.
 
-Want to see it before you run it? [`examples/walkthrough.md`](examples/walkthrough.md) is the whole journey with real outputs. For everything after day one - starting a session, recording a pattern card, challenging an "X does not exist" claim, reviewing before commit - [`PROMPTS.md`](PROMPTS.md) has a paste-ready prompt for each. And if even the quickstart is more ceremony than you want: [`MINIMAL.md`](MINIMAL.md) is the whole discipline in 64 lines, zero blanks - save it as `AGENTS.md` and you are done. (Pick **one** path for `AGENTS.md`: MINIMAL as-is, *or* the fillable template via `install.sh` + bootstrap. If MINIMAL is already in place, the installer keeps it and says so.)
+**Pick your depth:**
 
-Prefer to run the command yourself? It is step 1 of the block above; then paste step 2 into your agent. And if piping curl into a shell makes you itch - it should - [`install.sh`](install.sh) is 50 lines of plain POSIX sh that only ever adds files; read it first. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in. The agent assembling its own harness from measured facts is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
+| Time | Path |
+|---|---|
+| 30 seconds | [`MINIMAL.md`](MINIMAL.md) - the whole discipline in 64 lines, zero blanks. Save as `AGENTS.md`, done. |
+| 60 seconds | The quickstart above - installer plus your agent filling a repo-specific canon. |
+| 5 minutes | [`examples/walkthrough.md`](examples/walkthrough.md) - watch the whole journey, real outputs, before running anything. |
+| 20 minutes | Read every word. The whole kit is ~650 lines of Markdown; density is the feature. |
 
-Want to see every moving part before adopting it? [Getting started](#getting-started) below unrolls the same thing by hand.
+Pick **one** path for `AGENTS.md` - MINIMAL as-is, *or* the fillable template via the installer (if MINIMAL is already in place, `install.sh` keeps it and says so). If piping curl into a shell makes you itch - it should - [`install.sh`](install.sh) is 50 lines of plain POSIX sh that only ever adds files; read it first. Either way the templates are safe before customization: an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive." The agent assembling its own harness from measured facts is not a gimmick - it is the kit's first lesson in practice: **measured, not guessed.**
+
+After day one, [`PROMPTS.md`](PROMPTS.md) has a paste-ready prompt for each lifecycle moment; [Getting started](#getting-started) below unrolls the adoption by hand.
 
 ---
 
@@ -52,13 +59,11 @@ None of these are model-intelligence problems. They are **harness** problems: th
 
 ## What is in the box (v0.1)
 
-Copy the templates into your own repo and fill in the blanks. Each is standalone.
-
-The whole kit is about **650 lines of Markdown** - you can read every word of it in twenty minutes, and you should. That is deliberate: this is a small set of load-bearing rules, not a framework. Density is the feature.
+Copy the templates into your own repo and fill in the blanks. Each is standalone; the whole kit is a small set of load-bearing rules, not a framework.
 
 | File | What it gives you |
 |---|---|
-| [`MINIMAL.md`](MINIMAL.md) | **The 64-line harness.** The whole discipline distilled into one file with zero blanks - save it as `AGENTS.md` and it works exactly as pasted. Start here if you want value in the next thirty seconds. |
+| [`MINIMAL.md`](MINIMAL.md) | **The 64-line harness.** The whole discipline distilled into one file with zero blanks - save it as `AGENTS.md` and it works exactly as pasted. |
 | [`templates/AGENTS.md`](templates/AGENTS.md) | An **engine-neutral canon**: one source-of-truth rules file every agent reads, so Claude Code, Codex, and the next tool you adopt stay in sync instead of drifting. |
 | [`templates/CLAUDE.md`](templates/CLAUDE.md) | A **thin engine appendix** that imports the canon and holds only the Claude-Code-specific machinery (skills, subagents, hooks). The pattern that keeps rules DRY across engines. |
 | [`templates/WORK_PROTOCOL.md`](templates/WORK_PROTOCOL.md) | The **thinking discipline**: evidence-first, root-cause-before-fix, a two-strike rule for when you are stuck, and a four-question self-check before you dare say "done." |
@@ -66,7 +71,7 @@ The whole kit is about **650 lines of Markdown** - you can read every word of it
 | [`templates/PATTERNS.md`](templates/PATTERNS.md) | A **drop-in seed for the incident registry** - the file the cards accumulate in. The installer places it at your repo root, ready for card 01. |
 | [`templates/ralph-goal.md`](templates/ralph-goal.md) | A goal template for **fresh-context iteration loops** (the "run until it passes" pattern), with the acceptance criteria written so a machine can check them. |
 | [`install.sh`](install.sh) | The **one-command installer**: copies the files above into your repo, skips anything that already exists, detects Claude Code, prints the bootstrap prompt. |
-| [`examples/AGENTS.example.md`](examples/AGENTS.example.md) | The canon **filled in end-to-end** for a fictional project - what the template looks like when it is done, and roughly what the bootstrap prompt should produce for yours. |
+| [`examples/AGENTS.example.md`](examples/AGENTS.example.md) | The canon **filled in end-to-end** for a fictional multi-component project - deliberately bigger than the walkthrough's single-file tracker: that one shows adoption, this one shows what your canon grows into. |
 | [`examples/walkthrough.md`](examples/walkthrough.md) | **Adoption end to end in five minutes** - a real walkthrough of install -> agent fill -> what changes, with the actual outputs. |
 | [`examples/hooks/`](examples/hooks/) | **Enforcement, not just prose**: a git pre-commit that blocks the section-0 invariant file from being staged, and a Claude Code hook that stops destructive git. Optional, engine-labeled. |
 | [`PROMPTS.md`](PROMPTS.md) | **Paste-ready prompts for the whole lifecycle**: bootstrap, session start, recording a pattern card, challenging an absence claim, pre-commit review, canon upkeep. |
@@ -105,6 +110,8 @@ cp harness-kit/templates/PATTERNS.md      ./PATTERNS.md
 cp harness-kit/templates/pattern-card.md  ./docs/pattern-card.md   # optional format reference
 ```
 
+`AGENTS.md` must sit at the repo root - that is where engines look for it. If four rules files at root is more clutter than you want, `WORK_PROTOCOL.md` and `PATTERNS.md` can live under `docs/` instead; just update the paths your `AGENTS.md` points at (sections 4 and 6).
+
 ### 3. Fill in the blanks - or have your agent do it
 
 The fast path: paste the bootstrap prompt from the quickstart and let the agent fill `AGENTS.md` from measured facts, then review its diff. Filling by hand instead? Open `AGENTS.md`, replace every `<PLACEHOLDER>`, delete sections you do not need. Where to spend your fifteen minutes, in order:
@@ -134,10 +141,7 @@ Ask the agent: *"Summarize the rules in AGENTS.md in five bullets and tell me th
 
 ## Who this is for
 
-- You use an AI coding agent as a **daily driver**, not a toy.
-- Your codebase is **long-lived**: it has history, scars, and load-bearing weirdness that "looks wrong but is right."
-- You are tired of re-teaching the same lessons every session.
-- Bonus: you use **more than one** agent (Claude Code plus Codex, say) and want them to obey the same rules.
+You use a coding agent as a **daily driver** on a **long-lived** codebase - one with history, scars, and load-bearing weirdness that "looks wrong but is right" - and you are tired of re-teaching the same lessons every session. Extra credit if you run **more than one** engine and want them under the same rules.
 
 If you are writing throwaway scripts, you do not need this. Come back when the code has to survive.
 
