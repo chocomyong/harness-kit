@@ -12,7 +12,7 @@ Order matters. Skip one and every step after it is built on sand.
 
 1. **Scope it.** Which app or module? Load *its* docs first, not the repo's front page.
 2. **Locate by looking, not remembering.** Grep and read the actual files. If your repo has an interface registry or a module map, read that first.
-3. **Scan the registry.** Pull the incident/pattern cards that touch your area and name them in your plan.
+3. **Check the registry's index.** Open the cards it names for your area and cite them in your plan - index first, do not re-read every card.
 4. **Get recent context.** Last ~10 commits plus the relevant changelog top. The previous loop's output is this loop's input.
 5. **State the plan, then execute.** Files to change, blast radius, risk - one paragraph. For anything irreversible, confirming the guard is a precondition of starting.
 

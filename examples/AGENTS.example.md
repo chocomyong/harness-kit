@@ -67,7 +67,7 @@ Every substantial task runs this loop:
 
 Location of the registry: **`./PATTERNS.md`** (currently PATTERN-01 through PATTERN-06).
 
-Each entry is a 4-block card: **symptom / debug path / root cause / prevention rule**, plus the version or date it was learned. Before planning any change, scan the registry for cards that touch your area and name them in the plan - e.g. any work near the worker must cite PATTERN-03 (*reminder emails sent twice when the worker restarts mid-batch*).
+Each entry is a 4-block card: **symptom / debug path / root cause / prevention rule**, plus the version or date it was learned. Before planning any change, check the registry's index for cards that touch your area, open those cards, and name them in the plan - e.g. any work near the worker must cite PATTERN-03 (*reminder emails sent twice when the worker restarts mid-batch*).
 
 ---
 

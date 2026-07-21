@@ -33,9 +33,10 @@ Before a feature, fix, or refactor - this fires the bootstrap discipline from WO
 
 ```text
 We are about to work on: <one-line description>.
-Read AGENTS.md and WORK_PROTOCOL.md. Scan PATTERNS.md for cards that
-touch this area and name the relevant ones. Then state your plan in one
-paragraph - files to change, blast radius, risk - before editing anything.
+Read AGENTS.md and WORK_PROTOCOL.md. Check the index in PATTERNS.md for
+cards that touch this area, open those cards, and name the relevant
+ones. Then state your plan in one paragraph - files to change, blast
+radius, risk - before editing anything.
 ```
 
 ## 4. Record what a bug just taught you
