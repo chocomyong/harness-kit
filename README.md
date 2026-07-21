@@ -88,8 +88,6 @@ A rules file the agent never reads does nothing. Point your agent at it:
 
 Ask the agent: *"Summarize the rules in AGENTS.md in five bullets and tell me the top invariant."* If it answers from your file, it is loaded. If it makes something up, it never read it - go back to step 4 and fix the wiring.
 
-> Note: while this repo is private, the `curl` and `git clone` above need your GitHub credentials. Once it is public, they work for anyone.
-
 ## Who this is for
 
 - You use an AI coding agent as a **daily driver**, not a toy.
