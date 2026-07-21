@@ -36,18 +36,59 @@ Plus one essay, because it is the sharpest idea here and worth reading before yo
 
 More principles and anonymized case studies land in v0.2 if this is useful to people. Tell me by starring or opening an issue.
 
-## Quick start
+## Getting started
+
+harness-kit is not a package you install with one command. It is a set of Markdown files you copy into your own repo and adapt. Adoption is five steps, and none of them takes long.
+
+### 1. Get the files
 
 ```bash
-# from the root of the repo you want to harness
+# clone it
+git clone https://github.com/chocomyong/harness-kit.git
+
+# or grab it without git history
 curl -L https://github.com/chocomyong/harness-kit/archive/refs/heads/main.tar.gz | tar xz
-cp harness-kit-main/templates/AGENTS.md ./AGENTS.md
-cp harness-kit-main/templates/WORK_PROTOCOL.md ./docs/WORK_PROTOCOL.md
-# if you use Claude Code, also:
-cp harness-kit-main/templates/CLAUDE.md ./CLAUDE.md
 ```
 
-Then open `AGENTS.md` and replace every `<PLACEHOLDER>`. Delete the sections you do not need. The point is not to adopt all of it - it is to have a canon at all, and to make the agent read it.
+### 2. Copy the templates you want into your repo
+
+Start small. The one file that matters most is the canon; everything else is optional and additive.
+
+```bash
+# the minimum: one canonical rules file at your repo root
+cp harness-kit/templates/AGENTS.md ./AGENTS.md
+
+# recommended next
+cp harness-kit/templates/WORK_PROTOCOL.md ./docs/WORK_PROTOCOL.md
+cp harness-kit/templates/pattern-card.md  ./docs/pattern-card.md   # keep as a format reference
+```
+
+### 3. Fill in the blanks
+
+Open `AGENTS.md` and replace every `<PLACEHOLDER>`. Delete sections you do not need. Where to spend your fifteen minutes, in order:
+
+- **Section 0 (top invariant):** the one thing that must never break. If your repo has one, write it first.
+- **Section 1 (repo map):** the layout, marking what is live vs. retired.
+- **Section 3 (commit contract):** your commit-message format.
+
+A rough canon you actually customized beats a perfect template you copied blindly.
+
+### 4. Wire it to your agent (the step everyone forgets)
+
+A rules file the agent never reads does nothing. Point your agent at it:
+
+| Agent | What to do |
+|---|---|
+| **Claude Code** | Also copy `templates/CLAUDE.md` to your repo root. Claude Code auto-loads `CLAUDE.md`, which `@import`s your `AGENTS.md`. That is the whole hookup. |
+| **Codex / OpenAI** | It reads `AGENTS.md` at the repo root on its own. Nothing else to do. |
+| **Cursor** | Cursor reads `AGENTS.md`; or add a one-line `.cursorrules` that says "Follow the rules in AGENTS.md." |
+| **Anything else** | Put it in the system prompt or your first message: "Read AGENTS.md and follow it." |
+
+### 5. Confirm it stuck
+
+Ask the agent: *"Summarize the rules in AGENTS.md in five bullets and tell me the top invariant."* If it answers from your file, it is loaded. If it makes something up, it never read it - go back to step 4 and fix the wiring.
+
+> Note: while this repo is private, the `curl` and `git clone` above need your GitHub credentials. Once it is public, they work for anyone.
 
 ## Who this is for
 
