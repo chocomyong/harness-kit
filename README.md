@@ -155,6 +155,8 @@ That is the whole pitch: these rules have receipts. The names, servers, and busi
 
 **Was this written with AI?** Yes - by coding agents operated under exactly the discipline it describes, steered and reviewed by the human who accumulated the scars. It would be strange if a kit about operating coding agents were produced any other way. The commit trailers say which engine co-authored what; treat the repo itself as the demo.
 
+**Doesn't Claude Code's `/init` - or its memory feature - already do this?** They solve a different layer. `/init` and its cousins write down what your repo *is* (layout, build commands); this kit writes down how not to *wreck* it (the invariant, the destructive-op gates, the absence discipline, the incident cards) - opinionated content no engine generates for you. And engine memory is per-machine, per-engine, and invisible to review; the canon and `PATTERNS.md` live in the repo, travel with every clone and teammate, and read the same to whatever agent you adopt next. The more engines ship their own proprietary rules files, the more an engine-neutral canon is the thing keeping them from drifting apart.
+
 **Why not just one big `CLAUDE.md`?** Because the day you add a second engine - Codex, Cursor, whatever ships next quarter - your rules either fork into two drifting copies or the second agent runs without rules. The canon is engine-neutral on purpose, and `CLAUDE.md` here is a thin importing appendix. The reasoning is written out in [`templates/CLAUDE.md`](templates/CLAUDE.md).
 
 ## Prior art and credit
