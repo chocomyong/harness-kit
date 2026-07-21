@@ -30,6 +30,8 @@ Set up harness-kit in this repo:
 - **The agent works under discipline**: evidence before claims, root cause before fix, a human sign-off before anything destructive, and a self-check before it is allowed to say "done."
 - **Bugs stop coming back.** Each one that teaches you something becomes a numbered card in `PATTERNS.md` that future sessions must read before touching that area - which is what stops an agent from "cleaning up" a fix it does not understand.
 
+Want to see it before you run it? [`examples/walkthrough.md`](examples/walkthrough.md) is the whole journey with real outputs. And for everything after day one - starting a session, recording a pattern card, challenging an "X does not exist" claim, reviewing before commit - [`PROMPTS.md`](PROMPTS.md) has a paste-ready prompt for each.
+
 Prefer to run the command yourself? It is step 1 of the block above; then paste step 2 into your agent. And if piping curl into a shell makes you itch - it should - [`install.sh`](install.sh) is 50 lines of plain POSIX sh that only ever adds files; read it first. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in. The agent assembling its own harness from measured facts is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
 
 Want to see every moving part before adopting it? [Getting started](#getting-started) below unrolls the same thing by hand.
@@ -64,6 +66,8 @@ The whole kit is about **650 lines of Markdown** - you can read every word of it
 | [`templates/ralph-goal.md`](templates/ralph-goal.md) | A goal template for **fresh-context iteration loops** (the "run until it passes" pattern), with the acceptance criteria written so a machine can check them. |
 | [`install.sh`](install.sh) | The **one-command installer**: copies the files above into your repo, skips anything that already exists, detects Claude Code, prints the bootstrap prompt. |
 | [`examples/AGENTS.example.md`](examples/AGENTS.example.md) | The canon **filled in end-to-end** for a fictional project - what the template looks like when it is done, and roughly what the bootstrap prompt should produce for yours. |
+| [`examples/walkthrough.md`](examples/walkthrough.md) | **Adoption end to end in five minutes** - a real walkthrough of install -> agent fill -> what changes, with the actual outputs. |
+| [`PROMPTS.md`](PROMPTS.md) | **Paste-ready prompts for the whole lifecycle**: bootstrap, session start, recording a pattern card, challenging an absence claim, pre-commit review, canon upkeep. |
 
 Plus one essay, because it is the sharpest idea here and worth reading before you touch anything else:
 
