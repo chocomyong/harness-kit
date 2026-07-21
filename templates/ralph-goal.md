@@ -2,7 +2,7 @@
 
 > For "run until it passes" work: repeated attempts against a clear finish line, where a single long context would accumulate drift and hallucination. This is Geoffrey Huntley's "Ralph" pattern - an external driver spawns a **fresh agent process each iteration**, so context never accumulates. Each iteration rebuilds its understanding from `git log` and the actual file state, not from a memory that could be wrong. Original write-up: https://ghuntley.com/loop/
 >
-> Write one goal file, point your loop driver at it, and let it run. The driver re-invokes a fresh agent per iteration until the acceptance criteria are met or a max-iteration cap is hit.
+> Write one goal file, point your loop driver at it, and let it run. The driver re-invokes a fresh agent per iteration until the acceptance criteria are met or a max-iteration cap is hit. A minimal, engine-agnostic driver ships in [`examples/ralph-driver.sh`](../examples/ralph-driver.sh) - bring your own agent CLI; the check command, not the agent, decides when it is done.
 
 ## When this pays off (and when it does not)
 
