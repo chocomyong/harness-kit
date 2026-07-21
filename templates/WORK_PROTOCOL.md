@@ -68,6 +68,8 @@ One measurement is always cheaper than another round of guessing.
 
 Before you write "there is no X" / "that is dead" / "there is no backup," **go find X.** A claim of absence needs more evidence than a claim of presence: presence is proven by one instance, absence requires an exhaustive check. If you looked in one place (one variable, one filename, one grep) and concluded "not there," that is not a judgment, it is a guess. "Not on my screen" is not "does not exist."
 
+Corollary: if the only reason you believe X is absent is that a dashboard or log does not show it, you have found an **observation gap**, not an absence - and the gap itself is usually worth fixing, because the next person will make the same misjudgment.
+
 This one has its own essay because it is the sharpest and most common failure: `principles/absence-judgment.md`. Read it.
 
 ## 8. Self-check before you commit or report - four questions

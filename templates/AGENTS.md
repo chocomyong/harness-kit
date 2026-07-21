@@ -2,7 +2,7 @@
 
 > **This is the canon.** It is the single source of truth for how any coding agent works in this repo (Claude Code, Codex, or whatever comes next). Engine-specific machinery lives in a thin appendix (see `CLAUDE.md`); rules that apply to every engine live here, so nothing drifts between tools.
 >
-> How to use this template: replace every `<PLACEHOLDER>`, delete sections you do not need, keep the structure. The value is having a canon at all and making every agent read it.
+> How to use this template: replace every `<PLACEHOLDER>`, delete sections you do not need, keep the structure. Fastest path: paste the bootstrap prompt from the harness-kit README and let your agent fill the blanks from measured facts. The value is having a canon at all and making every agent read it.
 
 ---
 
@@ -12,11 +12,25 @@ An agent's context resets. Yours does not. Every rule below is here because brea
 
 ---
 
+## Agent bootstrap - if this file still contains placeholders
+
+If you are a coding agent reading this and `<PLACEHOLDER>` marks remain below, **filling them is your first task.** Survey the repo - the actual file tree, `git log`, existing docs - and propose measured values for every blank:
+
+- **Measured, not guessed.** Every value you propose must come from something you read in *this* repo, not from what repos like this usually look like.
+- **The top invariant is confirmed by a human.** Propose candidates when you see them (a production datastore, a one-way data sync, a paid external API) - but never invent one, and never delete section 0 without asking.
+- **Show the diff before saving.** You fill; the human confirms.
+
+Until the blanks are filled, operate under the safe defaults noted per section.
+
+---
+
 ## 0. Top invariant - the one thing that must never break
 
 > State the single highest-stakes fact about this repo. The thing where a mistake is unrecoverable. Examples: a production database that must never be overwritten, a payment path that must never run in a test, a customer dataset that only ever syncs one direction.
 
 **`<INVARIANT>`.** Before any work that could touch it, `<the guard you must confirm first>`.
+
+**Safe default while unfilled:** assume an invariant you cannot see exists. Treat every destructive or irreversible operation - file deletion, schema drop, force-push, bulk overwrite, sending data off the machine - as potentially touching it, and stop to ask a human first.
 
 If your repo has no such thing, delete this section. If it does, this is the first thing every agent reads and the last thing it double-checks before committing.
 
@@ -32,6 +46,8 @@ If your repo has no such thing, delete this section. If it does, this is the fir
 | `<retired thing>` | `<path>` | **retired** | do not modify; kept for history only |
 
 **Naming:** when the team says "`<informal name>`" they mean `<exact path>`. Write the synonyms down so the agent scopes work correctly.
+
+**Retired means checked, not assumed:** before marking anything retired, check whether the logic *moved* rather than died. Entry points die; core functions migrate to new modules and live on. Calling live code dead is the more expensive mistake - the next agent will route around working code (see WORK_PROTOCOL section 7).
 
 ---
 
@@ -60,6 +76,8 @@ Every substantial task runs this loop:
 - **File-companion rule:** every behavior change updates `<CHANGELOG file>` in the same commit. Every schema change updates `<the interface registry>` in the same commit. A runtime `KeyError` is almost always one side of a contract changing while the other side did not know.
 - **Engine trailer:** agent-authored commits end with a trailer naming the engine (`Co-Authored-By: <engine> <email>`), so a later investigator can tell which tool wrote what.
 - **Destructive ops need a human:** force-push, hard reset, branch deletion, file deletion, schema drops. The agent proposes; a human decides.
+- **Destructive commands name their target:** any command that overwrites or deletes data carries its target arguments explicitly (dataset, region, table, path) - never lean on a tool's default value. A single omitted target flag once replaced a live dataset's rows with another's because the default pointed somewhere real.
+- **Parallel-session guard:** multiple agents may share one working tree. Right before committing, read the last ~3 commits - if another session already shipped your topic, verify convergence instead of duplicating. Right after committing, read `git show --stat HEAD` - if intended files are missing while the tree is clean, another session's commit absorbed your edits; trace them via reflog instead of re-editing blind.
 - **Before committing:** read `git diff --staged` in full. Unintended files are how the invariant in section 0 gets violated by accident.
 
 ---
@@ -68,7 +86,7 @@ Every substantial task runs this loop:
 
 > This is the single highest-leverage habit in the kit. When a bug teaches you something, you record it as a card so the agent cannot "improve" the fix away. See `pattern-card.md` for the format. Keep the cards near the code they protect.
 
-Location of the registry: `<path, e.g. docs/patterns.md>`.
+Location of the registry: `<path - install.sh seeds ./PATTERNS.md>`.
 
 Each entry is a 4-block card: **symptom / debug path / root cause / prevention rule**, plus the version or date it was learned. Before planning any change, scan the registry for cards that touch your area and name the relevant ones in your plan.
 

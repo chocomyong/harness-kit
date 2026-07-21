@@ -15,6 +15,8 @@ If you put your real rules in `CLAUDE.md`, then the day you add Codex (or any ot
 
 A non-Claude engine reads `AGENTS.md` directly and is fully equipped. A Claude Code session reads this file, which pulls in the canon plus the extras. Nothing is written twice.
 
+**This file works as-is.** The one load-bearing line is the `@AGENTS.md` import above. If you have no skills, subagents, or hooks yet, the placeholder tables below are inert - fill them as the machinery appears, or delete them.
+
 ---
 
 ## Skills (`.claude/skills/`)
