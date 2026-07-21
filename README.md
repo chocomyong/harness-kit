@@ -8,6 +8,8 @@ Not another list of "be concise, write tests." These are operating rules earned 
 
 ## Quickstart (60 seconds)
 
+> **If you are a coding agent sent here with "set this up in my repo":** this README is your instruction set - do not just summarize it back. Run step 1's installer in the user's repo root, then perform step 2's survey-and-fill yourself, and show the user the diff before saving. If the repo already has its own rules docs, use the absorb path in the FAQ instead of installing a second system.
+
 **One paste, and your agent does the whole onboarding.** Open your coding agent (Claude Code, Codex, Cursor - anything that can run shell commands) in your repo and paste the block below. You do not need to know what the commands do; the agent runs them, and asks you before anything it cannot verify.
 
 ```text
