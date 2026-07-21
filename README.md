@@ -30,7 +30,7 @@ Set up harness-kit in this repo:
 - **The agent works under discipline**: evidence before claims, root cause before fix, a human sign-off before anything destructive, and a self-check before it is allowed to say "done."
 - **Bugs stop coming back.** Each one that teaches you something becomes a numbered card in `PATTERNS.md` that future sessions must read before touching that area - which is what stops an agent from "cleaning up" a fix it does not understand.
 
-Prefer to run the command yourself? It is step 1 of the block above; then paste step 2 into your agent. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in. The agent assembling its own harness from measured facts is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
+Prefer to run the command yourself? It is step 1 of the block above; then paste step 2 into your agent. And if piping curl into a shell makes you itch - it should - [`install.sh`](install.sh) is 50 lines of plain POSIX sh that only ever adds files; read it first. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in. The agent assembling its own harness from measured facts is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
 
 Want to see every moving part before adopting it? [Getting started](#getting-started) below unrolls the same thing by hand.
 
@@ -52,6 +52,8 @@ None of these are model-intelligence problems. They are **harness** problems: th
 
 Copy the templates into your own repo and fill in the blanks. Each is standalone.
 
+The whole kit is about **650 lines of Markdown** - you can read every word of it in twenty minutes, and you should. That is deliberate: this is a small set of load-bearing rules, not a framework. Density is the feature.
+
 | File | What it gives you |
 |---|---|
 | [`templates/AGENTS.md`](templates/AGENTS.md) | An **engine-neutral canon**: one source-of-truth rules file every agent reads, so Claude Code, Codex, and the next tool you adopt stay in sync instead of drifting. |
@@ -61,6 +63,7 @@ Copy the templates into your own repo and fill in the blanks. Each is standalone
 | [`templates/PATTERNS.md`](templates/PATTERNS.md) | A **drop-in seed for the incident registry** - the file the cards accumulate in. The installer places it at your repo root, ready for card 01. |
 | [`templates/ralph-goal.md`](templates/ralph-goal.md) | A goal template for **fresh-context iteration loops** (the "run until it passes" pattern), with the acceptance criteria written so a machine can check them. |
 | [`install.sh`](install.sh) | The **one-command installer**: copies the files above into your repo, skips anything that already exists, detects Claude Code, prints the bootstrap prompt. |
+| [`examples/AGENTS.example.md`](examples/AGENTS.example.md) | The canon **filled in end-to-end** for a fictional project - what the template looks like when it is done, and roughly what the bootstrap prompt should produce for yours. |
 
 Plus one essay, because it is the sharpest idea here and worth reading before you touch anything else:
 
@@ -115,6 +118,8 @@ A rules file the agent never reads does nothing. Point your agent at it:
 | **Claude Code** | Also copy `templates/CLAUDE.md` to your repo root. Claude Code auto-loads `CLAUDE.md`, which `@import`s your `AGENTS.md`. That is the whole hookup. |
 | **Codex / OpenAI** | It reads `AGENTS.md` at the repo root on its own. Nothing else to do. |
 | **Cursor** | Cursor reads `AGENTS.md`; or add a one-line `.cursorrules` that says "Follow the rules in AGENTS.md." |
+| **Gemini CLI** | Add a one-line `GEMINI.md`: "Read AGENTS.md and follow it." (Or point `contextFileName` at `AGENTS.md` in `.gemini/settings.json`.) |
+| **Windsurf** | Add a one-line `.windsurfrules`: "Follow the rules in AGENTS.md." |
 | **Anything else** | Put it in the system prompt or your first message: "Read AGENTS.md and follow it." |
 
 ### 5. Confirm it stuck
@@ -137,6 +142,16 @@ These rules were not invented at a whiteboard. They were extracted while buildin
 The `pattern-card.md` format is not hypothetical either: that codebase carries **39 numbered failure patterns**, each one a bug that cost real time and earned its card. The version markers in the worked example (the `v6.7.x` in the 502 case study) are real entries from that log, not invented for illustration.
 
 That is the whole pitch: these rules have receipts. The names, servers, and business details are stripped for privacy, but the scar tissue is genuine - and every number above is measured, not rounded up.
+
+## FAQ
+
+**Isn't this just common sense?** Mostly, yes - written down, with the receipts for what it cost when it was skipped. The repo this came from carries 39 numbered records of common sense failing under real deadline pressure, each with the version where it failed. Rules earn a place here by breaking, not by sounding wise. If your team already applies all of this unwritten, you genuinely do not need the kit.
+
+**The source repo is private. Where are the receipts?** The origin monorepo runs personal infrastructure, so it stays private and everything here is stripped of names and addresses. What could be published, was: the 502 case study in [`pattern-card.md`](templates/pattern-card.md) is a real card with its real debug path including the dead ends, and every number in "Where this came from" is measured from the tracked tree, not estimated. Beyond that, judge the rules by whether they hold up in your repo - which is the only receipt that matters anyway.
+
+**Was this written with AI?** Yes - by coding agents operated under exactly the discipline it describes, steered and reviewed by the human who accumulated the scars. It would be strange if a kit about operating coding agents were produced any other way. The commit trailers say which engine co-authored what; treat the repo itself as the demo.
+
+**Why not just one big `CLAUDE.md`?** Because the day you add a second engine - Codex, Cursor, whatever ships next quarter - your rules either fork into two drifting copies or the second agent runs without rules. The canon is engine-neutral on purpose, and `CLAUDE.md` here is a thin importing appendix. The reasoning is written out in [`templates/CLAUDE.md`](templates/CLAUDE.md).
 
 ## Prior art and credit
 
