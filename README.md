@@ -59,6 +59,18 @@ If you have used a coding agent on a real, long-lived codebase, you have seen al
 
 None of these are model-intelligence problems. They are **harness** problems: the agent has no durable place to keep what it learned, no discipline to check itself, and no structure that stops it from undoing your safety work. harness-kit is that missing layer.
 
+## The shape of the kit: three pillars
+
+Every file in the box does one of three jobs. If you remember nothing else about the layout, remember these:
+
+| Pillar | The job | Where it lives here |
+|---|---|---|
+| **Context** | The agent starts from what the repo knows, not from zero: the rules, the incidents, and the reasons behind load-bearing weirdness live in files it must read. | the `AGENTS.md` canon, `PATTERNS.md` and its cards, `principles/absence-judgment.md` |
+| **Verification** | "Done" is a verdict, not a feeling. Write the acceptance check first, work backward until it passes, and never let the agent grade its own homework. | `WORK_PROTOCOL.md` (define-done-first, evidence-first, the self-check), `ralph-goal.md` acceptance criteria, the driver's `RALPH_CHECK` as sole arbiter |
+| **Scaffolding** | Structure that survives context loss: one neutral canon, thin engine appendixes, fresh-context loops, handoff by document instead of by memory. | `templates/CLAUDE.md`, `examples/ralph-driver.sh`, `PROMPTS.md` |
+
+These names are not ours - context, verification, and scaffolding keep getting independently rediscovered by anyone who operates coding agents seriously (see [credit](#prior-art-and-credit)). The kit's contribution is making each pillar a file you can install instead of a lesson you re-learn.
+
 ## What is in the box (v0.1)
 
 Copy the templates into your own repo and fill in the blanks. Each is standalone; the whole kit is a small set of load-bearing rules, not a framework.
@@ -177,6 +189,7 @@ This kit stands on other people's ideas:
 - The **fresh-context iteration loop** in `ralph-goal.md` is Geoffrey Huntley's "Ralph" pattern. Read the original: https://ghuntley.com/loop/
 - The **`AGENTS.md` convention** for an engine-neutral agent instruction file is a community standard: https://agents.md
 - The pre-spec "grill me" thinking that informs `WORK_PROTOCOL.md` owes a debt to Matt Pocock's work on planning with agents.
+- The **Context / Verification / Scaffolding** naming of the three pillars follows a Meta senior engineer's retrospective on winning a hackathon through pure agent orchestration (Korean-language talk: https://youtu.be/ViJxFYuVcfs) - independent convergence on the same discipline, which is part of why we trust it.
 
 harness-kit's contribution is not inventing these. It is **wiring them into one coherent operating discipline** and writing down the failure modes that made each rule necessary.
 

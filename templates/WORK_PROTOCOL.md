@@ -15,6 +15,7 @@ Order matters. Skip one and every step after it is built on sand.
 3. **Check the registry's index.** Open the cards it names for your area and cite them in your plan - index first, do not re-read every card.
 4. **Get recent context.** Last ~10 commits plus the relevant changelog top. The previous loop's output is this loop's input.
 5. **State the plan, then execute.** Files to change, blast radius, risk - one paragraph. For anything irreversible, confirming the guard is a precondition of starting.
+6. **Define done first (evaluator-first).** Before working, write the acceptance check as something executable - a command, a PASS/FAIL list, a measurable bar - and work backward until it passes. Section 4's table is the after-the-fact audit; this is its before-the-fact twin. If you cannot write the check yet, the request is still vague: ask, do not start.
 
 ## 1. Evidence first - no coding from memory
 
