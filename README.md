@@ -2,7 +2,7 @@
 
 **The harness for coding agents.** A small set of copy-paste files that keep an AI coding agent honest on a codebase that has to survive.
 
-Not another list of "be concise, write tests." These are operating rules earned the hard way, on a real multi-app repo, over a year of production incidents. Scar tissue, not aspiration.
+Not another list of "be concise, write tests." These are operating rules earned the hard way, on a real multi-app repo, across thousands of commits and dozens of production incidents. Scar tissue, not aspiration. ([Where this came from](#where-this-came-from).)
 
 ---
 
@@ -57,6 +57,14 @@ Then open `AGENTS.md` and replace every `<PLACEHOLDER>`. Delete the sections you
 - Bonus: you use **more than one** agent (Claude Code plus Codex, say) and want them to obey the same rules.
 
 If you are writing throwaway scripts, you do not need this. Come back when the code has to survive.
+
+## Where this came from
+
+These rules were not invented at a whiteboard. They were extracted while building and operating **IME (Integrated Monitoring Environment)** - a self-hosted Flask monitoring dashboard that grew to roughly **41,000 lines** of Python, JavaScript, CSS, and templates across **19 route modules** - and the cluster of sibling tools that grew up beside it in the same monorepo: a ranking web board, several notification-watcher daemons, a trading-research harness, a daily-chart crawler. Roughly **ten runnable apps and daemons**, one developer, **~4,500 commits since January 2026**, all deployed to a self-hosted box that had to stay up while the code changed under it.
+
+The `pattern-card.md` format is not hypothetical either: that codebase carries **39 numbered failure patterns**, each one a bug that cost real time and earned its card. The version markers in the worked example (the `v6.7.x` in the 502 case study) are real entries from that log, not invented for illustration.
+
+That is the whole pitch: these rules have receipts. The names, servers, and business details are stripped for privacy, but the scar tissue is genuine - and every number above is measured, not rounded up.
 
 ## Prior art and credit
 
