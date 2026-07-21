@@ -8,27 +8,31 @@ Not another list of "be concise, write tests." These are operating rules earned 
 
 ## Quickstart (60 seconds)
 
-Two steps, and your agent does the onboarding itself.
-
-**1. Drop the files into your repo** (no dependencies; never overwrites anything you already have):
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/chocomyong/harness-kit/main/install.sh | sh
-```
-
-**2. Paste this into your coding agent:**
+**One paste, and your agent does the whole onboarding.** Open your coding agent (Claude Code, Codex, Cursor - anything that can run shell commands) in your repo and paste the block below. You do not need to know what the commands do; the agent runs them, and asks you before anything it cannot verify.
 
 ```text
-Read AGENTS.md and WORK_PROTOCOL.md. Then survey this repo (file tree,
-git log, existing docs) and fill in every <PLACEHOLDER> in AGENTS.md
-with measured facts about THIS repo. Do not guess: anything you cannot
-verify by reading the repo - especially the top invariant in section 0 -
-ask me instead of inventing it. Show me the diff before saving.
+Set up harness-kit in this repo:
+
+1. Run:
+   curl -fsSL https://raw.githubusercontent.com/chocomyong/harness-kit/main/install.sh | sh
+   (it only adds files; it never overwrites anything that already exists)
+
+2. Read the AGENTS.md and WORK_PROTOCOL.md it installed. Then survey this
+   repo (file tree, git log, existing docs) and fill in every <PLACEHOLDER>
+   in AGENTS.md with measured facts about THIS repo. Do not guess: anything
+   you cannot verify by reading the repo - especially the top invariant in
+   section 0 - ask me instead of inventing it. Show me the diff before saving.
 ```
 
-That is the whole install. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in with your repo's measured facts. The agent filling in its own operating rules from evidence is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
+**What you get when it finishes:**
 
-Prefer to see every moving part before adopting it? [Getting started](#getting-started) below unrolls the same thing by hand.
+- **Your repo carries its own operating rules.** `AGENTS.md` (the rules), `WORK_PROTOCOL.md` (the thinking discipline), `PATTERNS.md` (the incident registry) live in your repo, so every future session - any engine - starts from them instead of from zero. You stop re-teaching the same lessons.
+- **The agent works under discipline**: evidence before claims, root cause before fix, a human sign-off before anything destructive, and a self-check before it is allowed to say "done."
+- **Bugs stop coming back.** Each one that teaches you something becomes a numbered card in `PATTERNS.md` that future sessions must read before touching that area - which is what stops an agent from "cleaning up" a fix it does not understand.
+
+Prefer to run the command yourself? It is step 1 of the block above; then paste step 2 into your agent. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in. The agent assembling its own harness from measured facts is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
+
+Want to see every moving part before adopting it? [Getting started](#getting-started) below unrolls the same thing by hand.
 
 ---
 
