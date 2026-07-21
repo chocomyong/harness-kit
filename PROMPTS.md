@@ -80,7 +80,23 @@ nitpicks. If the diff includes files the stated goal does not require,
 flag them.
 ```
 
-## 7. Keep the canon current
+## 7. Absorb the kit into an existing rules system
+
+If your repo already runs its own rules docs (a `CLAUDE.md`, a dev guide, house protocols), do not install a parallel system - the same rule stated in two places drifts (this repo's own PATTERN-01). Absorb instead:
+
+```text
+Read harness-kit's MINIMAL.md and principles/absence-judgment.md
+(github.com/chocomyong/harness-kit). Then read our existing rules docs.
+Do NOT create new rule files or a second rules system. Propose the
+smallest set of edits that folds, INTO our existing docs and in their
+language and format: (1) an index-first incident registry seeded with
+the rules we already re-explain or re-litigate, (2) absence-judgment as
+a named rule, (3) our top invariant stated at the top of our
+highest-authority doc. Where a kit idea duplicates something we already
+have, keep ours and skip the kit's. Show me the diff before saving.
+```
+
+## 8. Keep the canon current
 
 Monthly, or after a big refactor - a canon that drifts from the repo becomes noise:
 

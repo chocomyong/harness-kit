@@ -24,3 +24,5 @@ Merge the `hooks` block from `claude-settings.json` into your repo's `.claude/se
 Other engines have equivalent seams (Codex and Cursor both support project-level command policies); the git hook above covers every engine at once, which is why it comes first.
 
 **Honest ceiling:** command-string matching is defense-in-depth, not a hard gate - aliases, `eval`, or creative spacing can slip past it. The git pre-commit is the reliable, engine-wide net; treat the PreToolUse matcher as a best-effort backstop, never a guarantee.
+
+**Shape note:** the pre-commit above assumes your invariant is a file that must *never* be committed (live data reaching the remote is the disaster). If your invariant is a deliberately *tracked* asset instead - measured data, a golden file - the commit gate is the wrong seam: guard the place where rows can silently drop (a row-count check at import/export). Same principle, different seam; write the hook your invariant actually needs.
