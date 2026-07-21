@@ -1,8 +1,8 @@
 # AGENTS.md - minimal operating rules for a coding agent
 
-<!-- harness-kit MINIMAL: works exactly as pasted - no blanks to fill.
-     Save as AGENTS.md in your repo root. Full kit, with the reasons
-     behind every rule: https://github.com/chocomyong/harness-kit -->
+<!-- harness-kit MINIMAL - distilled from templates/{AGENTS,WORK_PROTOCOL}.md;
+     rule changes land there first and this file is re-derived. No blanks -
+     save as AGENTS.md and go. Full kit: https://github.com/chocomyong/harness-kit -->
 
 ## The invariant
 Assume this repo contains something whose loss is unrecoverable - a live

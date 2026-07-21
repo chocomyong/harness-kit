@@ -26,7 +26,11 @@ fetch() {
   fi
 }
 
-fetch templates/AGENTS.md        AGENTS.md
+if [ -e AGENTS.md ] && grep -q "harness-kit MINIMAL" AGENTS.md; then
+  echo "note  your AGENTS.md is the MINIMAL variant - keeping it; the fillable template was NOT installed (see README: MINIMAL vs template)"
+else
+  fetch templates/AGENTS.md      AGENTS.md
+fi
 fetch templates/WORK_PROTOCOL.md WORK_PROTOCOL.md
 fetch templates/PATTERNS.md      PATTERNS.md
 
