@@ -6,6 +6,32 @@ Not another list of "be concise, write tests." These are operating rules earned 
 
 ---
 
+## Quickstart (60 seconds)
+
+Two steps, and your agent does the onboarding itself.
+
+**1. Drop the files into your repo** (no dependencies; never overwrites anything you already have):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/chocomyong/harness-kit/main/install.sh | sh
+```
+
+**2. Paste this into your coding agent:**
+
+```text
+Read AGENTS.md and WORK_PROTOCOL.md. Then survey this repo (file tree,
+git log, existing docs) and fill in every <PLACEHOLDER> in AGENTS.md
+with measured facts about THIS repo. Do not guess: anything you cannot
+verify by reading the repo - especially the top invariant in section 0 -
+ask me instead of inventing it. Show me the diff before saving.
+```
+
+That is the whole install. The templates are safe before customization - an unfilled canon defaults to "assume an invariant you cannot see exists; ask before anything destructive" - and they get sharper as the blanks fill in with your repo's measured facts. The agent filling in its own operating rules from evidence is not a gimmick; it is the kit's first lesson in practice: **measured, not guessed.**
+
+Prefer to see every moving part before adopting it? [Getting started](#getting-started) below unrolls the same thing by hand.
+
+---
+
 ## The problem this solves
 
 If you have used a coding agent on a real, long-lived codebase, you have seen all of these:
@@ -28,7 +54,9 @@ Copy the templates into your own repo and fill in the blanks. Each is standalone
 | [`templates/CLAUDE.md`](templates/CLAUDE.md) | A **thin engine appendix** that imports the canon and holds only the Claude-Code-specific machinery (skills, subagents, hooks). The pattern that keeps rules DRY across engines. |
 | [`templates/WORK_PROTOCOL.md`](templates/WORK_PROTOCOL.md) | The **thinking discipline**: evidence-first, root-cause-before-fix, a two-strike rule for when you are stuck, and a four-question self-check before you dare say "done." |
 | [`templates/pattern-card.md`](templates/pattern-card.md) | A **4-block incident card** (symptom / debug path / root cause / prevention). This is how you stop the agent from re-deleting a fix: you move the reason out of your head and into the repo. |
+| [`templates/PATTERNS.md`](templates/PATTERNS.md) | A **drop-in seed for the incident registry** - the file the cards accumulate in. The installer places it at your repo root, ready for card 01. |
 | [`templates/ralph-goal.md`](templates/ralph-goal.md) | A goal template for **fresh-context iteration loops** (the "run until it passes" pattern), with the acceptance criteria written so a machine can check them. |
+| [`install.sh`](install.sh) | The **one-command installer**: copies the files above into your repo, skips anything that already exists, detects Claude Code, prints the bootstrap prompt. |
 
 Plus one essay, because it is the sharpest idea here and worth reading before you touch anything else:
 
@@ -38,7 +66,7 @@ More principles and anonymized case studies land in v0.2 if this is useful to pe
 
 ## Getting started
 
-harness-kit is not a package you install with one command. It is a set of Markdown files you copy into your own repo and adapt. Adoption is five steps, and none of them takes long.
+The [quickstart](#quickstart-60-seconds) above is the fast path. This section unrolls the same adoption by hand, for people who want to see every moving part first. Five steps, none of them long.
 
 ### 1. Get the files
 
@@ -52,20 +80,21 @@ curl -L https://github.com/chocomyong/harness-kit/archive/refs/heads/main.tar.gz
 
 ### 2. Copy the templates you want into your repo
 
-Start small. The one file that matters most is the canon; everything else is optional and additive.
+Start small. The one file that matters most is the canon; everything else is optional and additive. (This is exactly what `install.sh` automates.)
 
 ```bash
 # the minimum: one canonical rules file at your repo root
 cp harness-kit/templates/AGENTS.md ./AGENTS.md
 
 # recommended next
-cp harness-kit/templates/WORK_PROTOCOL.md ./docs/WORK_PROTOCOL.md
-cp harness-kit/templates/pattern-card.md  ./docs/pattern-card.md   # keep as a format reference
+cp harness-kit/templates/WORK_PROTOCOL.md ./WORK_PROTOCOL.md
+cp harness-kit/templates/PATTERNS.md      ./PATTERNS.md
+cp harness-kit/templates/pattern-card.md  ./docs/pattern-card.md   # optional format reference
 ```
 
-### 3. Fill in the blanks
+### 3. Fill in the blanks - or have your agent do it
 
-Open `AGENTS.md` and replace every `<PLACEHOLDER>`. Delete sections you do not need. Where to spend your fifteen minutes, in order:
+The fast path: paste the bootstrap prompt from the quickstart and let the agent fill `AGENTS.md` from measured facts, then review its diff. Filling by hand instead? Open `AGENTS.md`, replace every `<PLACEHOLDER>`, delete sections you do not need. Where to spend your fifteen minutes, in order:
 
 - **Section 0 (top invariant):** the one thing that must never break. If your repo has one, write it first.
 - **Section 1 (repo map):** the layout, marking what is live vs. retired.
